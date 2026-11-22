@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.facebook.com https://*.facebook.net; script-src 'self' https://connect.facebook.net; connect-src https://sfiflidnsrdotoidvcmh.supabase.co https://*.facebook.com https://*.facebook.net; form-action 'none'; base-uri 'none'">
+  <title>資金需求線上評估</title>
+  <link rel="stylesheet" href="../assets/concepts.css?v=1"><link rel="stylesheet" href="../assets/flow.css?v=1">
+  <script type="module" src="../assets/landing.js?v=1"></script>
+</head>
+<body data-concept="moss" data-version="I" data-apply-alias="false">
+  <main class="screen"><div id="estimate-home">
+    <header class="hero">
+      <img id="hero-art" src="../assets/art-moss.webp" fetchpriority="high" alt="" width="900" height="506">
+      <div class="hero-copy">
+        <p class="eyebrow">線上額度評估</p><p class="company-label">至樂國際有限公司</p>
+        <h1>快速額度試算<span>急用周轉首選</span></h1>
+        <p class="subhead">需求金額最高可選 <strong>NT$3,000,000</strong></p>
+      </div>
+    </header>
+    <section class="calculator" aria-label="貸款試算">
+      <div class="amount-head"><label for="amount">申請金額</label><output id="amount-label" for="amount">NT$ 100,000</output></div>
+      <input type="range" id="amount" min="50000" max="3000000" step="50000" value="100000" aria-valuetext="NT$ 100,000">
+      <div class="range-ends"><span>NT$ 50,000</span><span>NT$ 3,000,000</span></div>
+      <fieldset class="term-group">
+        <legend>還款期數</legend>
+        <div class="term-grid">
+          <label data-term="24"><input type="radio" name="term" value="24"><span>24期</span></label>
+          <label data-term="36"><input type="radio" name="term" value="36"><span>36期</span></label>
+          <label data-term="60"><input type="radio" name="term" value="60" checked><span>60期</span></label>
+          <label data-term="84"><input type="radio" name="term" value="84"><span>84期</span></label>
+          <label data-term="120"><input type="radio" name="term" value="120"><span>120期</span></label>
+          <label data-term="144"><input type="radio" name="term" value="144"><span>144期</span></label>
+          <label data-term="180"><input type="radio" name="term" value="180"><span>180期</span></label>
+          <label data-term="240"><input type="radio" name="term" value="240"><span>240期</span></label>
+          <label data-term="300"><input type="radio" name="term" value="300"><span>300期</span></label>
+          <label data-term="360"><input type="radio" name="term" value="360"><span>360期</span></label>
+        </div>
+      </fieldset>
+      <label class="purpose" for="purpose"><span>貸款用途</span><select id="purpose"><option>日常資金調度</option><option>整合既有貸款</option><option>自營生意備款</option><option>家庭臨時支出</option><option>設備工具添購</option><option>其他資金安排</option></select></label>
+      <section class="estimate" aria-label="試算結果">
+        <p class="estimate-title">試算結果（僅供參考）</p>
+        <div class="estimate-main"><div><label for="payment">每月應還</label><output id="payment">NT$ 1,775</output></div><div class="apr"><span>年利率</span><strong id="rate">2.5%</strong></div></div>
+        <details><summary>查看試算明細</summary><dl><div><dt>總利息</dt><dd id="result-interest"></dd></div><div><dt>總還款</dt><dd id="result-total"></dd></div></dl></details>
+      </section>
+      <aside class="activity" aria-label="客戶動態示意">
+        <span class="activity-key">客戶動態</span>
+        <span class="activity-copy"><strong>臺北市　陳＊華</strong><small>申請示意，非核貸結果</small></span>
+        <strong class="activity-amount">50萬</strong>
+      </aside>
+      <button class="cta" type="button" id="apply">立即申請貸款 <span aria-hidden="true">→</span></button>
+      <p class="fine-print">利率與期數為試算假設。實際額度、利率、期數及結果依個別評估為準。</p>
+    </section>
+    </div>
+    <section id="application" class="flow" aria-labelledby="application-title" hidden>
+      <header class="flow-title"><button id="return-estimate" class="quiet-link" type="button">← 返回試算</button>
+      <h1 id="application-title" tabindex="-1">填寫申請資料</h1><p>請填寫本人真實資料，方便專員接續確認。</p></header>
+      <form class="application-card" id="lead-form" novalidate>
+        <fieldset><legend>需求金額</legend><div class="bands"><label><input type="radio" name="amount_band" value="5萬-10萬" checked><span>5萬-10萬</span></label><label><input type="radio" name="amount_band" value="10萬-30萬" ><span>10萬-30萬</span></label><label><input type="radio" name="amount_band" value="30萬-50萬" ><span>30萬-50萬</span></label><label><input type="radio" name="amount_band" value="50萬以上" ><span>50萬以上</span></label></div></fieldset>
+        <div class="identity">
+          <label for="name">真實姓名<input id="name" name="name" autocomplete="name" required maxlength="30" placeholder="請填寫本人真實姓名" aria-describedby="name-error"><span id="name-error" class="field-error"></span></label>
+          <label for="age">年齡<input id="age" name="age" required inputmode="numeric" maxlength="3" placeholder="例如 35" aria-describedby="age-error"><span id="age-error" class="field-error"></span></label>
+          <label for="phone">手機號碼<input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="請填寫手機號碼" aria-describedby="phone-error"><span id="phone-error" class="field-error"></span></label>
+        </div>
+        <fieldset aria-describedby="bank-note"><legend>是否為警示戶/告誡戶</legend><div class="bands bank">
+          <label><input type="radio" name="warning_account" value="非警示戶" required><span>否</span></label>
+          <label><input type="radio" name="warning_account" value="警示戶" required><span>是</span></label>
+        </div><p class="form-note" id="bank-note">本服務目前不受理警示戶或告誡戶申請。</p></fieldset>
+        <p class="form-note">本頁資料採加密傳輸，僅供專員聯繫與需求確認使用。</p>
+        <p id="form-message" class="field-error" role="status" aria-live="polite"></p>
+        <button class="cta" id="submit-lead" type="submit"><b>立即送件・確認可辦額度</b><span aria-hidden="true">→</span></button>
+        <button id="refresh-form-line" class="quiet-link" type="button" hidden>重新載入 LINE 連結</button>
+      </form>
+    </section>
+    <section id="success" class="flow" aria-labelledby="success-title" hidden>
+      <header class="flow-title"><h1 id="success-title" tabindex="-1">資料已送出</h1><p>請加入 LINE 並主動傳送姓名，專員收到後才能接續確認。</p></header>
+      <div class="application-card success-card"><p class="name-prompt">進入 LINE 後請傳送<strong id="handover-name"></strong></p>
+        <a class="cta" id="line-link" target="_blank" rel="noopener noreferrer" hidden>複製姓名並加入 LINE <span aria-hidden="true">↗</span></a>
+        <p id="line-message" class="form-note" role="status" aria-live="polite"></p>
+        <button id="refresh-success-line" class="quiet-link" type="button" hidden>重新載入 LINE 連結</button>
+      </div>
+    </section>
+    <p class="preview-note" id="preview-note" hidden>本地預覽：不會送出真實申請、LINE 或像素事件。</p>
+    <noscript><p class="preview-note">請啟用 JavaScript 以使用試算與申請功能。</p></noscript>
+  </main>
+</body>
+</html>
