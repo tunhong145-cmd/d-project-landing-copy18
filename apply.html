@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.facebook.com https://*.facebook.net; script-src 'self' https://connect.facebook.net; connect-src https://sfiflidnsrdotoidvcmh.supabase.co https://*.facebook.com https://*.facebook.net; form-action 'none'; base-uri 'none'">
   <title>資金需求線上評估</title>
-  <link rel="stylesheet" href="./assets/concepts.css?v=1"><link rel="stylesheet" href="./assets/flow.css?v=1">
-  <script type="module" src="./assets/landing.js?v=1"></script>
+  <link rel="stylesheet" href="./assets/concepts.css?v=1"><link rel="stylesheet" href="./assets/flow.css?v=3">
+  <script type="module" src="./assets/landing.js?v=2"></script>
 </head>
 <body data-concept="pearl" data-version="C" data-apply-alias="true">
   <main class="screen"><div id="estimate-home">
@@ -72,12 +72,25 @@
         <button id="refresh-form-line" class="quiet-link" type="button" hidden>重新載入 LINE 連結</button>
       </form>
     </section>
-    <section id="success" class="flow" aria-labelledby="success-title" hidden>
-      <header class="flow-title"><h1 id="success-title" tabindex="-1">資料已送出</h1><p>請加入 LINE 並主動傳送姓名，專員收到後才能接續確認。</p></header>
-      <div class="application-card success-card"><p class="name-prompt">進入 LINE 後請傳送<strong id="handover-name"></strong></p>
-        <a class="cta" id="line-link" target="_blank" rel="noopener noreferrer" hidden>複製姓名並加入 LINE <span aria-hidden="true">↗</span></a>
-        <p id="line-message" class="form-note" role="status" aria-live="polite"></p>
-        <button id="refresh-success-line" class="quiet-link" type="button" hidden>重新載入 LINE 連結</button>
+    <section id="success" class="success-flow" aria-labelledby="success-title" hidden>
+      <div class="success-frame">
+        <div class="success-content">
+          <header class="success-heading">
+            <div class="success-step"><i class="success-tick" aria-hidden="true"></i><span>申請進度<span class="success-step-detail">最後一步</span></span></div>
+            <h1 id="success-title" tabindex="-1">資料已送出</h1>
+            <p>加入 LINE 後，專員才能接續確認。</p>
+          </header>
+          <div class="handover">
+            <div class="handover-data"><span>請在 LINE 傳送以下姓名</span><strong id="handover-name"></strong></div>
+            <button id="copy-name" class="quiet-link" type="button" aria-describedby="copy-name-status">複製姓名</button>
+          </div>
+          <p id="copy-name-status" class="copy-status" role="status" aria-live="polite"></p>
+        </div>
+        <div class="success-actions">
+          <a class="line-official-button" id="line-link" target="_blank" rel="noopener noreferrer" hidden><img src="./assets/line-add-friend-zh-hant.png" alt="加入 LINE 好友" width="232" height="72"></a>
+          <p id="line-message" class="form-note" role="status" aria-live="polite"></p>
+          <button id="refresh-success-line" class="quiet-link" type="button" hidden>重新載入 LINE 連結</button>
+        </div>
       </div>
     </section>
     <p class="preview-note" id="preview-note" hidden>本地預覽：不會送出真實申請、LINE 或像素事件。</p>

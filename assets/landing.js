@@ -14,6 +14,7 @@ const send = el('submit-lead');
 const status = el('form-message');
 const lineLink = el('line-link');
 const lineMessage = el('line-message');
+const copyNameStatus = el('copy-name-status');
 const bankRule = el('bank-note').textContent;
 const rates = new Map([[24, 3.5], [36, 3], [60, 2.5], [84, 2], [120, 1.5], [144, 1.5], [180, 1.5], [240, 1.5], [300, 1.5], [360, 1.5]]);
 const int = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 });
@@ -102,8 +103,8 @@ function updateLine() {
   else lineLink.removeAttribute('href');
   el('refresh-success-line').hidden = Boolean(line) || loadingLine;
   lineMessage.textContent = loadingLine ? '正在載入 LINE 連結，資料已送出。'
-    : !line ? '資料已送出。LINE 連結暫時無法取得，請重新載入連結，不必再次送件。'
-    : localPreview ? '本地預覽：不會開啟真實 LINE。' : '點擊時會嘗試複製姓名。';
+    : !line ? '暫時無法開啟 LINE。請重新載入連結，不必再次送件。'
+    : '';
 }
 
 async function refreshLine() {
@@ -169,9 +170,23 @@ form.querySelector('.bank').addEventListener('change', () => {
   if (eligible) void integration.then((service) => service.eligible?.()).catch(() => {});
 });
 lineLink.addEventListener('click', (event) => {
-  if (!result || !line || localPreview) { event.preventDefault(); return; }
+  if (!result || !line || localPreview) {
+    event.preventDefault();
+    if (localPreview && result && line) lineMessage.textContent = '本地預覽：不會開啟真實 LINE。';
+    return;
+  }
   if (!lineRecorded) { lineRecorded = true; void integration.then((service) => service.clicked(result.id)).catch(() => {}); }
-  navigator.clipboard?.writeText(result.name).then(() => { lineMessage.textContent = '姓名已複製，可貼到 LINE 對話。'; }, () => { lineMessage.textContent = '請在 LINE 手動輸入姓名。'; });
+});
+el('copy-name').addEventListener('click', async () => {
+  if (!result) return;
+  if (localPreview) { copyNameStatus.textContent = '本地預覽：已示範複製姓名。'; return; }
+  try {
+    if (typeof navigator.clipboard?.writeText !== 'function') throw new Error('Clipboard unavailable');
+    await navigator.clipboard.writeText(result.name);
+    copyNameStatus.textContent = '姓名已複製，可貼到 LINE 對話。';
+  } catch {
+    copyNameStatus.textContent = '無法自動複製，請長按姓名，或到 LINE 手動輸入。';
+  }
 });
 for (const button of ['refresh-form-line', 'refresh-success-line']) el(button).addEventListener('click', refreshLine);
 range.addEventListener('input', updateEstimate);
@@ -194,5 +209,10 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelector('.activity-copy strong').textContent = label;
     document.querySelector('.activity-amount').textContent = amount;
   }, 7000);
+}
+if (localPreview && new URLSearchParams(location.search).get('preview') === 'success') {
+  result = { name: '陳展生' };
+  el('handover-name').textContent = result.name;
+  show('success', false);
 }
 void refreshLine();
