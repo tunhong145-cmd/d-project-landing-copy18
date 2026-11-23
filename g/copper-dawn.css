@@ -1,0 +1,33 @@
+/* Copy18 F only. Artwork and brushed copper are the approved 曜銅晨岸 assets. */
+body[data-version="G"][data-concept="copper"] {
+  --base:#f6e9e2; --paper:#fff7f1; --ink:#352018; --muted:#60463a; --accent:#7e3f26;
+  --rule:#d2b4a5; --track:#d6b9aa; --radius:21px; --control:10px; --hero-wash:#f0d9ce;
+  --edge:#af7356; --track-end:#bd7956; --active:#985432; --active-ink:#fff7ed;
+  --result:#f1d7c7; --result-ink:#381e14; --result-edge:#ca9d85;
+  --cta-ink:#2a160f; --surface:linear-gradient(115deg,#e3a67e,#ffe0b6 34%,#bf744c 67%,#d59770);
+  --cta-lip:#8b4a30; --cta-light:#ffe2bb; --shadow:#75402e35;
+  background:radial-gradient(ellipse at 50% 0%,var(--base),#ebdacf 83%);
+}
+body[data-concept="copper"] .hero{height:218px}
+body[data-concept="copper"] .hero img{object-position:64% 77%}
+body[data-concept="copper"] .hero::after{background:linear-gradient(90deg,#f5e3d7e8 0%,#f5e3d7ac 44%,#f5e3d73a 65%,transparent 86%),linear-gradient(0deg,#f6e9e2d9,transparent 32%)}
+body[data-concept="copper"] .amount-head output{background:linear-gradient(150deg,var(--result),var(--paper));border-color:var(--result-edge)}
+body[data-concept="copper"] .term-grid input:checked+span,body[data-concept="copper"] .bands input:checked+span{background:linear-gradient(180deg,#fff4cf22,transparent 43%,#57280e35),var(--active);border-color:var(--cta-lip)}
+body[data-concept="copper"] .estimate{background:linear-gradient(105deg,#f6decbea,#f5cfb3e2 48%,#edb997d7),url('./copper-brushed.webp') center/cover,var(--result);border-color:var(--result-edge)}
+body[data-concept="copper"] .estimate::before{content:none}
+body[data-concept="copper"] .cta{background:none;border:0;box-shadow:none;text-shadow:0 1px #ffe2bd80;filter:drop-shadow(0 5px 4px #60342049);min-height:55px}
+body[data-concept="copper"] .cta::before,body[data-concept="copper"] .cta::after{content:"";position:absolute;z-index:-1;pointer-events:none;border-radius:0;clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px)}
+body[data-concept="copper"] .cta::before{inset:0;border:0;background:conic-gradient(from 30deg at 50% 44%,#ffefce,#ffdcac 42deg,#b46c46 64deg,#e6ab83 111deg,#9b5739 134deg,#51230f 178deg,#6e3119 230deg,#d48860 252deg,#9d5430 291deg,#ffe3bd 320deg,#ffefce)}
+body[data-concept="copper"] .cta::after{inset:3px 4px 6px;clip-path:polygon(6px 0,calc(100% - 6px) 0,100% 6px,100% calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,0 calc(100% - 6px),0 6px);background:linear-gradient(180deg,#fff6da7d,transparent 43%,#7e431d20),linear-gradient(100deg,#d5855a60,#fbd0a68a 40%,#aa59352c 100%),url('./copper-brushed.webp') center/cover;box-shadow:inset 0 1px #fff4dbaa}
+body[data-concept="copper"] .cta:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:360px){body[data-concept="copper"] .calculator{margin-inline:10px}}
+@media(max-width:520px) and (max-height:740px){body[data-concept="copper"] .hero{height:188px}body[data-concept="copper"] .hero-copy{padding-top:18px}body[data-concept="copper"] .hero h1{font-size:clamp(25px,7.3vw,31px)}}
+@media(prefers-color-scheme:dark){
+  body[data-version="G"][data-concept="copper"]{color-scheme:dark;--base:#2f221e;--paper:#3a2923;--ink:#ffeee3;--muted:#dcc6bb;--accent:#ffbe98;--rule:#745345;--track:#75584a;--edge:#b87d61;--hero-wash:#35231d;--result:#f1d7c7;--result-ink:#381e14;--result-edge:#bd8a71;--shadow:#1d110b91;background:#261a16}
+  body[data-concept="copper"] .hero img{filter:brightness(.76)}
+  body[data-concept="copper"] .hero::after{background:linear-gradient(90deg,#2f221ef5,#2f221ebe 49%,#2f221e24 73%,transparent 86%),linear-gradient(0deg,#2f221e,transparent 32%)}
+  body[data-concept="copper"] .amount-head output{background:var(--base);border-color:var(--rule)}
+  body[data-concept="copper"] .calculator,body[data-concept="copper"] .success-frame{box-shadow:0 9px 22px -13px var(--shadow),inset 0 1px #ffe9d516}
+  body[data-concept="copper"] .handover .quiet-link{color:var(--ink)}
+}
+@media(forced-colors:active){body[data-concept="copper"] .cta{color:ButtonText;background:ButtonFace;border:2px solid ButtonText;filter:none;text-shadow:none}body[data-concept="copper"] .cta::before,body[data-concept="copper"] .cta::after{display:none}}
